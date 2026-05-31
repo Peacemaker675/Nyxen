@@ -9,6 +9,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql
 
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+
   backend:
     build: .
     ports:
@@ -17,6 +23,7 @@ services:
       - .env
     depends_on:
       - db
+      - redis
     volumes:
       - .:/app
     stop_signal: SIGINT  

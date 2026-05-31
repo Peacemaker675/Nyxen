@@ -13,7 +13,6 @@ class FriendRequest(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # Prevent spam: user A can only have one active request to user B at a time
         unique_together = ('from_user', 'to_user')
 
     def __str__(self):
